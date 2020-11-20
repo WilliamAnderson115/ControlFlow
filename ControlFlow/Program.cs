@@ -12,14 +12,27 @@ namespace ControlFlow
         // be validated).  Negative numbers should return "Invalid".
         public static string AreYouValid(int number)
         {
-            return default;
+            var result = string.Empty;
+            if (number > 1 && number < 10)
+            {
+                result = "Valid";
+            }
+            else
+            {
+                result = "Invalid";
+            }
+
+            return result;
         }
 
         // 1.2 - Write a method which takes two integers and returns the maximum of the two. If they
         // are the same, return either one.
         public static int Maximum(int number1, int number2)
         {
-            return default;
+            return (number2 < number1) ? number2 : number1;
+
+            // This is a ternary statement, it follows the format 
+            // (Question) ? Result if Question is True : Result if question if false
         }
 
         // 1.3 - Write a method which takes two integers, the width and height of an image. Then
