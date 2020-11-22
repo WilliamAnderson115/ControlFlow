@@ -55,17 +55,24 @@ namespace ControlFlow
 
         // 2.1 - Write a method to count how many integers between two numbers are divisible by a divider with
         // no remainder. Return the count. For example, if minNumber = 1 and maxNumber = 6, and the divider is 3 then
-        // output should be 2. Don't Worry about input validation.
+        // output should be 2.
         public static int DivisibleByNumber(int minNumber, int maxNumber, int divider)
         {
             return default;
         }
 
         // 2.2 - Write a method to calculate the sum of all the integers and return it. For example if
-        // the program enters (2, 3, 5, 1) then the return should be 11. Don't Worry about input validation.
+        // the program enters (2, 3, 5, 1) then the return should be 11.
         public static int SumIntegers(params int[] numbers)
         {
-            return default;
+            var result = 0;
+
+            foreach (var number in numbers)
+            {
+                result += number;
+            }
+
+            return result;
         }
 
         // 2.3 - Write a method to compute the factorial of an integer return it. For example, if the
@@ -76,20 +83,18 @@ namespace ControlFlow
             return default;
         }
 
-        // 2.4 - Write a method that takes a series of integers separated by commas. Then find the
-        // maximum of the numbers and return it. For example, if the numbers are “5, 3, 8, 1, 4",
-        // the program should return 8.
+        // 2.4 - Write a method that takes an array of integers. Then find the maximum of the numbers
+        // and return it. For example, if the numbers are {5, 3, 8, 1, 4}, the program should return 8.
         public static int MaximumNumber(params int[] numbers)
         {
             return default;
         }
     }
 
-    class Program
+    internal static class Program
     {
-        static void Main()
+        private static void Main()
         {
-            // This is intentionally left empty
         }
     }
 }
