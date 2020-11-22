@@ -18,7 +18,7 @@ namespace ControlFrowTest
 
             const string expected = "Valid";
 
-            result.Should().Be(expected, "5 should be a valid number");
+            result.Should().Be(expected, because: "5 should be a valid number");
         }
 
         [TestMethod]
@@ -30,7 +30,7 @@ namespace ControlFrowTest
                              ControlFlow.ControlFlow.AreYouValid(1)
                          };
 
-            results.Should().NotContain("Valid", "1 and 10 should not be acceptable values");
+            results.Should().NotContain("Valid", because: "1 and 10 should not be acceptable values");
         }
 
         [TestMethod]
@@ -40,7 +40,7 @@ namespace ControlFrowTest
 
             const string expected = "Invalid";
 
-            result.Should().Be(expected, "11 is more than 10 and a number more than 10 is invalid");
+            result.Should().Be(expected, because: "11 is more than 10 and a number more than 10 is invalid");
         }
 
         [TestMethod]
@@ -50,7 +50,7 @@ namespace ControlFrowTest
 
             const string expected = "Invalid";
 
-            result.Should().Be(expected, "0 is less than 1 and a number less than 1 is invalid");
+            result.Should().Be(expected, because: "0 is less than 1 and a number less than 1 is invalid");
         }
     }
 
@@ -66,7 +66,7 @@ namespace ControlFrowTest
 
             const int expected = 10;
 
-            result.Should().Be(expected, "10 should be more than 5");
+            result.Should().Be(expected, because: "10 should be more than 5");
         }
 
         [TestMethod]
@@ -76,27 +76,27 @@ namespace ControlFrowTest
 
             const int expected = 99;
 
-            result.Should().Be(expected, "99 should be more than 11");
+            result.Should().Be(expected, because: "99 should be more than 11");
         }
 
         [TestMethod]
         public void BothNumbersAreMax()
         {
-            var actual = ControlFlow.ControlFlow.Maximum(7, 7);
+            var result = ControlFlow.ControlFlow.Maximum(7, 7);
 
             var expected = 7;
 
-            Assert.AreEqual(expected, actual, "Should return either number if they are equal.");
+            result.Should().Be(expected, because: "it should return either number if they are equal");
         }
 
         [TestMethod]
         public void NegativeNumbers()
         {
-            var actual = ControlFlow.ControlFlow.Maximum(-3, -2);
+            var result = ControlFlow.ControlFlow.Maximum(-3, -2);
 
             var expected = -2;
 
-            Assert.AreEqual(expected, actual, "Should give the 'highest' negative");
+            result.Should().Be(expected, because: "it should return the 'highest' negative");
         }
     }
 
@@ -109,31 +109,31 @@ namespace ControlFrowTest
         [TestMethod]
         public void ShouldBeLandscape()
         {
-            var actual = ControlFlow.ControlFlow.LandscapeOrPortrait(10, 5);
+            var result = ControlFlow.ControlFlow.LandscapeOrPortrait(10, 5);
 
             var expected = "Landscape";
 
-            Assert.AreEqual(expected, actual, "10x5 should be Landscape");
+            result.Should().Be(expected, because: "10x5 should be Landscape");
         }
 
         [TestMethod]
         public void ShouldBePortrait()
         {
-            var actual = ControlFlow.ControlFlow.LandscapeOrPortrait(55, 1000);
+            var result = ControlFlow.ControlFlow.LandscapeOrPortrait(55, 1000);
 
             var expected = "Portrait";
 
-            Assert.AreEqual(expected, actual, "1000x55 should be Portrait");
+            result.Should().Be(expected, because: "1000x55 should be Portrait");
         }
 
         [TestMethod]
         public void ShouldBeSquare()
         {
-            var actual = ControlFlow.ControlFlow.LandscapeOrPortrait(55, 55);
+            var result = ControlFlow.ControlFlow.LandscapeOrPortrait(55, 55);
 
             var expected = "Square";
 
-            Assert.AreEqual(expected, actual, "55x55 should be Square");
+            result.Should().Be(expected, because: "55x55 should be Square");
         }
     }
 
@@ -149,18 +149,19 @@ namespace ControlFrowTest
     // returned as a string.
     //
     // If the number of demerit points is above 12, the program should display "License
-    // Suspended" instead. Don't Worry about input validation.
+    // Suspended" instead. Don't Worry about input validation            result.Should().Be(expected, because: "55x55 should be Square");
+
     [TestClass]
     public class SpeedTrapTest
     {
         [TestMethod]
         public void ShouldBeOkay()
         {
-            var actual = ControlFlow.ControlFlow.SpeedTrap(10, 5);
+            var result = ControlFlow.ControlFlow.SpeedTrap(speedLimit: 10, speedCar: 5);
 
             var expected = "Okay";
 
-            Assert.AreEqual(expected, actual);
+            result.Should().Be(expected, because: "the speed of a car is less than the speed limit");
         }
 
         /// <summary>
@@ -169,61 +170,61 @@ namespace ControlFrowTest
         [TestMethod]
         public void DrivingAtLimitOkay()
         {
-            var actual = ControlFlow.ControlFlow.SpeedTrap(10, 10);
+            var result = ControlFlow.ControlFlow.SpeedTrap(speedLimit: 10, speedCar: 10);
 
             var expected = "Okay";
 
-            Assert.AreEqual(expected, actual);
+            result.Should().Be(expected, because: "the speed of a car is at the speed limit");
         }
 
         [TestMethod]
         public void DrivingTooFastYouGetAPoint()
         {
-            var actual = ControlFlow.ControlFlow.SpeedTrap(15, 20);
+            var result = ControlFlow.ControlFlow.SpeedTrap(speedLimit: 15, speedCar: 20);
 
             var expected = "1";
 
-            Assert.AreEqual(expected, actual);
+            result.Should().Be(expected, because: "the speed of a car is 5 above the speed limit, which should return 1");
         }
 
         [TestMethod]
         public void DrivingFast4Points()
         {
-            var actual = ControlFlow.ControlFlow.SpeedTrap(15, 35);
+            var result = ControlFlow.ControlFlow.SpeedTrap(15, 35);
 
             var expected = "4";
 
-            Assert.AreEqual(expected, actual);
+            result.Should().Be(expected, because: "the speed of a car is 20 above the speed limit, which should return 4");
         }
 
         [TestMethod]
         public void ReachingPointLimit()
         {
-            var actual = ControlFlow.ControlFlow.SpeedTrap(20, 80);
+            var result = ControlFlow.ControlFlow.SpeedTrap(20, 80);
 
             var expected = "12";
 
-            Assert.AreEqual(expected, actual);
+            result.Should().Be(expected, because: "the speed of a car is 60 above the speed limit, which should return 12");
         }
 
         [TestMethod]
         public void LicenseSuspendedHere()
         {
-            var actual = ControlFlow.ControlFlow.SpeedTrap(20, 85);
+            var result = ControlFlow.ControlFlow.SpeedTrap(20, 85);
 
             var expected = "License Suspended";
 
-            Assert.AreEqual(expected, actual);
+            result.Should().Be(expected, because: "the speed of a car is 65 above the speed limit, which should return 13 (License Suspended)");
         }
 
         [TestMethod]
         public void WayTooFastAmigo()
         {
-            var actual = ControlFlow.ControlFlow.SpeedTrap(15, 120);
+            var result = ControlFlow.ControlFlow.SpeedTrap(15, 120);
 
             var expected = "License Suspended";
 
-            Assert.AreEqual(expected, actual);
+            result.Should().Be(expected, because: "the speed of a car is 115 above the speed limit, which is way too fast amigo");
         }
     }
 
@@ -240,7 +241,7 @@ namespace ControlFrowTest
 
             var expected = 9;
 
-            Assert.AreEqual(expected, actual);
+            actual.Should().Be(expected, because: "there are 9 numbers from x = 10 to x = 50 that are divisible by 9.");
         }
 
         [TestMethod]
@@ -250,7 +251,7 @@ namespace ControlFrowTest
 
             var expected = 1;
 
-            Assert.AreEqual(expected, actual);
+            actual.Should().Be(expected, because: "there is 1 number from x = 14 to x = 14 that are divisible by 9.");
         }
 
         [TestMethod]
@@ -260,7 +261,7 @@ namespace ControlFrowTest
 
             var expected = 0;
 
-            Assert.AreEqual(expected, actual);
+            actual.Should().Be(expected, because: "there is no number from x = 13 to x = 15 that are divisible by 6.");
         }
     }
 
@@ -276,17 +277,17 @@ namespace ControlFrowTest
 
             var actual = ControlFlow.ControlFlow.SumIntegers(3, 2);
 
-            Assert.AreEqual(expected, actual);
+            actual.Should().Be(expected, because: "3 + 2 = 5");
         }
 
         [TestMethod]
         public void NegativeNumbers()
         {
-            var expected = 5;
+            var expected = -7;
 
-            var actual = ControlFlow.ControlFlow.SumIntegers(3, 2);
+            var actual = ControlFlow.ControlFlow.SumIntegers(-4, -3);
 
-            Assert.AreEqual(expected, actual);
+            actual.Should().Be(expected, because: "-3 + -4 = -7");
         }
     }
 
@@ -303,7 +304,7 @@ namespace ControlFrowTest
 
             var actual = ControlFlow.ControlFlow.FindFactorial(10);
 
-            Assert.AreEqual(expected, actual);
+            actual.Should().Be(expected, because: "10! is equal to 3628800");
         }
 
         [TestMethod]
@@ -313,7 +314,7 @@ namespace ControlFrowTest
 
             var actual = ControlFlow.ControlFlow.FindFactorial(1);
 
-            Assert.AreEqual(expected, actual);
+            actual.Should().Be(expected, because: "1! is equal to 1");
         }
 
         [TestMethod]
@@ -323,7 +324,7 @@ namespace ControlFrowTest
 
             var actual = ControlFlow.ControlFlow.FindFactorial(0);
 
-            Assert.AreEqual(expected, actual);
+            actual.Should().Be(expected, because: "0! is equal to 1");
         }
     }
 
@@ -340,7 +341,7 @@ namespace ControlFrowTest
 
             var actual = ControlFlow.ControlFlow.MaximumNumber(1, 7, 5, 12, 4);
 
-            Assert.AreEqual(expected, actual);
+            actual.Should().Be(expected, because: "12 is the largest number in 1, 7, 5, 12, 4");
         }
 
         [TestMethod]
@@ -350,7 +351,7 @@ namespace ControlFrowTest
 
             var actual = ControlFlow.ControlFlow.MaximumNumber(14);
 
-            Assert.AreEqual(expected, actual);
+            actual.Should().Be(expected, because: "a number in a list of itself is also the max");
         }
 
         [TestMethod]
@@ -360,7 +361,7 @@ namespace ControlFrowTest
 
             var actual = ControlFlow.ControlFlow.MaximumNumber(1, 3, 3, 3);
 
-            Assert.AreEqual(expected, actual);
+            actual.Should().Be(expected, because: "3 is the highest number in duplicates");
         }
     }
 }
