@@ -65,14 +65,7 @@ namespace ControlFlow
         // the program enters (2, 3, 5, 1) then the return should be 11.
         public static int SumIntegers(params int[] numbers)
         {
-            var result = 0;
-
-            foreach (var number in numbers)
-            {
-                result += number;
-            }
-
-            return result;
+            return default;
         }
 
         // 2.3 - Write a method to compute the factorial of an integer return it. For example, if the
