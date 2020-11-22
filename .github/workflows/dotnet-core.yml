@@ -22,4 +22,4 @@ jobs:
     - name: Build
       run: dotnet build ControlFlow --configuration Release --no-restore
     - name: Test
-      run: dotnet test ControlFrowTest --no-restore --verbosity normal
+      run: dotnet test ControlFrowTest --no-restore --verbosity minimal
