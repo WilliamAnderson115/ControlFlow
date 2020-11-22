@@ -1,6 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ControlFlow;
 using System.Linq;
+using FluentAssertions;
 
 namespace ControlFrowTest
 {
@@ -14,49 +14,43 @@ namespace ControlFrowTest
         [TestMethod]
         public void ShouldBeValid()
         {
-            string actual = ControlFlow.ControlFlow.AreYouValid(5);
+            var result = ControlFlow.ControlFlow.AreYouValid(5);
 
-            string expected = "Valid";
+            const string expected = "Valid";
 
-            Assert.AreEqual(expected, actual, "Should return 5 as valid.");
+            result.Should().Be(expected, "5 should be a valid number");
         }
 
         [TestMethod]
         public void DoesNotAccept1or10()
         {
-            var actual = new string[]
-            {
-                ControlFlow.ControlFlow.AreYouValid(10),
-                ControlFlow.ControlFlow.AreYouValid(1)
-            };
+            var results = new[]
+                         {
+                             ControlFlow.ControlFlow.AreYouValid(10),
+                             ControlFlow.ControlFlow.AreYouValid(1)
+                         };
 
-            var expected = new string[]
-            {
-                "Invalid",
-                "Invalid"
-            };
-
-            Assert.IsTrue(actual.SequenceEqual(expected), "Should be invalid for 1 or 10.");
+            results.Should().NotContain("Valid", "1 and 10 should not be acceptable values");
         }
 
         [TestMethod]
         public void ShouldNotBeAboveRange()
         {
-            string actual = ControlFlow.ControlFlow.AreYouValid(12);
+            var result = ControlFlow.ControlFlow.AreYouValid(11);
 
             const string expected = "Invalid";
 
-            Assert.AreEqual(expected, actual, "Should be invalid above 10.");
+            result.Should().Be(expected, "11 is more than 10 and a number more than 10 is invalid");
         }
 
         [TestMethod]
         public void ShouldNotBeBelowRange()
         {
-            string actual = ControlFlow.ControlFlow.AreYouValid(-5);
+            var result = ControlFlow.ControlFlow.AreYouValid(0);
 
             const string expected = "Invalid";
 
-            Assert.AreEqual(expected, actual, "Should be invalid below 1.");
+            result.Should().Be(expected, "0 is less than 1 and a number less than 1 is invalid");
         }
     }
 
@@ -68,21 +62,21 @@ namespace ControlFrowTest
         [TestMethod]
         public void FirstNumberShouldBeMax()
         {
-            var actual = ControlFlow.ControlFlow.Maximum(10, 5);
+            var result = ControlFlow.ControlFlow.Maximum(10, 5);
 
-            var expected = 10;
+            const int expected = 10;
 
-            Assert.AreEqual(expected, actual, "10 should be more than 5");
+            result.Should().Be(expected, "10 should be more than 5");
         }
 
         [TestMethod]
         public void SecondNumberShouldBeMax()
         {
-            var actual = ControlFlow.ControlFlow.Maximum(11, 99);
+            var result = ControlFlow.ControlFlow.Maximum(11, 99);
 
-            var expected = 99;
+            const int expected = 99;
 
-            Assert.AreEqual(expected, actual, "99 should be more than 11");
+            result.Should().Be(expected, "99 should be more than 11");
         }
 
         [TestMethod]
@@ -115,7 +109,7 @@ namespace ControlFrowTest
         [TestMethod]
         public void ShouldBeLandscape()
         {
-            var actual = ControlFlow.ControlFlow.LandscapeOrPortrait(width: 10, height: 5);
+            var actual = ControlFlow.ControlFlow.LandscapeOrPortrait(10, 5);
 
             var expected = "Landscape";
 
@@ -162,7 +156,7 @@ namespace ControlFrowTest
         [TestMethod]
         public void ShouldBeOkay()
         {
-            var actual = ControlFlow.ControlFlow.SpeedTrap(speedLimit: 10, speedCar: 5);
+            var actual = ControlFlow.ControlFlow.SpeedTrap(10, 5);
 
             var expected = "Okay";
 
@@ -252,7 +246,7 @@ namespace ControlFrowTest
         [TestMethod]
         public void SameNumberForMinMax()
         {
-            var actual = ControlFlow.ControlFlow.DivisibleByNumber(minNumber: 14, maxNumber: 14, divider: 7);
+            var actual = ControlFlow.ControlFlow.DivisibleByNumber(14, 14, 7);
 
             var expected = 1;
 
@@ -268,7 +262,6 @@ namespace ControlFrowTest
 
             Assert.AreEqual(expected, actual);
         }
-
     }
 
     // 2.2 - Write a method to calculate the sum of all the integers and return it. For example if
@@ -281,7 +274,7 @@ namespace ControlFrowTest
         {
             var expected = 5;
 
-            var actual = ControlFlow.ControlFlow.SumIntegers(3,2);
+            var actual = ControlFlow.ControlFlow.SumIntegers(3, 2);
 
             Assert.AreEqual(expected, actual);
         }
@@ -332,7 +325,6 @@ namespace ControlFrowTest
 
             Assert.AreEqual(expected, actual);
         }
-
     }
 
     // 2.4 - Write a method that takes a series of integers separated by commas. Then find the
@@ -370,7 +362,5 @@ namespace ControlFrowTest
 
             Assert.AreEqual(expected, actual);
         }
-
-
     }
 }
