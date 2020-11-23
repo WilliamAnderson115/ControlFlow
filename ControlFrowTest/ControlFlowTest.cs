@@ -237,31 +237,31 @@ namespace ControlFrowTest
         [TestMethod]
         public void CorrectCount()
         {
-            var actual = ControlFlow.ControlFlow.DivisibleByNumber(10, 50, 5);
+            var result = ControlFlow.ControlFlow.DivisibleByNumber(10, 50, 5);
 
             var expected = 9;
 
-            actual.Should().Be(expected, because: "there are 9 numbers from x = 10 to x = 50 that are divisible by 9.");
+            result.Should().Be(expected, because: "there are 9 numbers from x = 10 to x = 50 that are divisible by 9.");
         }
 
         [TestMethod]
         public void SameNumberForMinMax()
         {
-            var actual = ControlFlow.ControlFlow.DivisibleByNumber(14, 14, 7);
+            var result = ControlFlow.ControlFlow.DivisibleByNumber(14, 14, 7);
 
             var expected = 1;
 
-            actual.Should().Be(expected, because: "there is 1 number from x = 14 to x = 14 that are divisible by 9.");
+            result.Should().Be(expected, because: "there is 1 number from x = 14 to x = 14 that are divisible by 9.");
         }
 
         [TestMethod]
         public void NotDivisibleByDivider()
         {
-            var actual = ControlFlow.ControlFlow.DivisibleByNumber(13, 15, 6);
+            var result = ControlFlow.ControlFlow.DivisibleByNumber(13, 15, 6);
 
             var expected = 0;
 
-            actual.Should().Be(expected, because: "there is no number from x = 13 to x = 15 that are divisible by 6.");
+            result.Should().Be(expected, because: "there is no number from x = 13 to x = 15 that are divisible by 6.");
         }
     }
 
@@ -275,9 +275,9 @@ namespace ControlFrowTest
         {
             var expected = 5;
 
-            var actual = ControlFlow.ControlFlow.SumIntegers(3, 2);
+            var result = ControlFlow.ControlFlow.SumIntegers(3, 2);
 
-            actual.Should().Be(expected, because: "3 + 2 = 5");
+            result.Should().Be(expected, because: "3 + 2 = 5");
         }
 
         [TestMethod]
@@ -285,9 +285,9 @@ namespace ControlFrowTest
         {
             var expected = -7;
 
-            var actual = ControlFlow.ControlFlow.SumIntegers(-4, -3);
+            var result = ControlFlow.ControlFlow.SumIntegers(-4, -3);
 
-            actual.Should().Be(expected, because: "-3 + -4 = -7");
+            result.Should().Be(expected, because: "-3 + -4 = -7");
         }
     }
 
@@ -302,9 +302,9 @@ namespace ControlFrowTest
         {
             var expected = 3628800;
 
-            var actual = ControlFlow.ControlFlow.FindFactorial(10);
+            var result = ControlFlow.ControlFlow.FindFactorial(10);
 
-            actual.Should().Be(expected, because: "10! is equal to 3628800");
+            result.Should().Be(expected, because: "10! is equal to 3628800");
         }
 
         [TestMethod]
@@ -312,9 +312,9 @@ namespace ControlFrowTest
         {
             var expected = 1;
 
-            var actual = ControlFlow.ControlFlow.FindFactorial(1);
+            var result = ControlFlow.ControlFlow.FindFactorial(1);
 
-            actual.Should().Be(expected, because: "1! is equal to 1");
+            result.Should().Be(expected, because: "1! is equal to 1");
         }
 
         [TestMethod]
@@ -322,14 +322,14 @@ namespace ControlFrowTest
         {
             var expected = 1;
 
-            var actual = ControlFlow.ControlFlow.FindFactorial(0);
+            var result = ControlFlow.ControlFlow.FindFactorial(0);
 
-            actual.Should().Be(expected, because: "0! is equal to 1");
+            result.Should().Be(expected, because: "0! is equal to 1");
         }
     }
 
     // 2.4 - Write a method that takes a series of integers separated by commas. Then find the
-    // maximum of the numbers and return it. For example, if the numbers are “5, 3, 8, 1, 4", the program should return 8.
+    // maximum of the numbers and return it. For example, if the numbers are Â“5, 3, 8, 1, 4", the program should return 8.
     // Don't Worry about input validation.
     [TestClass]
     public class MaximumNumberTest
@@ -339,9 +339,9 @@ namespace ControlFrowTest
         {
             var expected = 12;
 
-            var actual = ControlFlow.ControlFlow.MaximumNumber(1, 7, 5, 12, 4);
+            var result = ControlFlow.ControlFlow.MaximumNumber(1, 7, 5, 12, 4);
 
-            actual.Should().Be(expected, because: "12 is the largest number in 1, 7, 5, 12, 4");
+            result.Should().Be(expected, because: "12 is the largest number in 1, 7, 5, 12, 4");
         }
 
         [TestMethod]
@@ -349,9 +349,9 @@ namespace ControlFrowTest
         {
             var expected = 14;
 
-            var actual = ControlFlow.ControlFlow.MaximumNumber(14);
+            var result = ControlFlow.ControlFlow.MaximumNumber(14);
 
-            actual.Should().Be(expected, because: "a number in a list of itself is also the max");
+            result.Should().Be(expected, because: "a number in a list of itself is also the max");
         }
 
         [TestMethod]
@@ -359,9 +359,9 @@ namespace ControlFrowTest
         {
             var expected = 3;
 
-            var actual = ControlFlow.ControlFlow.MaximumNumber(1, 3, 3, 3);
+            var result = ControlFlow.ControlFlow.MaximumNumber(1, 3, 3, 3);
 
-            actual.Should().Be(expected, because: "3 is the highest number in duplicates");
+            result.Should().Be(expected, because: "when there are duplicates of the same max number, it should still be the same max");
         }
     }
 }
