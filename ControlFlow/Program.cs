@@ -15,14 +15,28 @@ namespace ControlFlow
         // be validated).  Negative numbers should return "Invalid".
         public static string AreYouValid(int number)
         {
-            return default;
+            string strLogic = "Invalid";
+            if (number > 1 && number < 10)
+            {
+                strLogic = "Valid";
+            }
+
+            return strLogic;
         }
 
         // 1.2 - Add to the method below that takes two integers and returns the maximum of the two. If they
         // are the same, return either one.
         public static int Maximum(int number1, int number2)
         {
-            return default;
+            int intLarger = 0;
+
+            if (number1 > number2)
+                intLarger = number1;
+            else if (number2 > number1)
+                intLarger = number2;
+            else
+                intLarger = number1;
+            return intLarger;
         }
 
         // 1.3 - Add to the method below that takes two integers, the width and height of an image. Then
@@ -30,7 +44,15 @@ namespace ControlFlow
         // they are equal. Assume non-negative values.
         public static string LandscapeOrPortrait(int width, int height)
         {
-            return default;
+            string strImageDisplay = "";
+            if (width > height)
+                strImageDisplay = "Landscape";
+            else if (width < height)
+                strImageDisplay = "Portrait";
+            else
+                strImageDisplay = "Square";
+
+            return strImageDisplay;
         }
 
         // 1.4 - Your job is to write a program for a speed camera. For simplicity, ignore the details
@@ -48,7 +70,22 @@ namespace ControlFlow
         // Suspended" instead. Don't worry about input validation.
         public static string SpeedTrap(int speedLimit, int speedCar)
         {
-            return default;
+            const int intPointsOnLicense = 12;
+            string strSpeedCheck = "Okay";
+            int intOverLimit = 0;
+            int intPointsLost = 0;
+
+            if (speedLimit < speedCar)
+            {
+                intOverLimit = speedCar - speedLimit;
+                intPointsLost = intOverLimit / 5;
+                strSpeedCheck = Convert.ToString(intPointsLost);
+            }
+
+            if(intPointsLost > intPointsOnLicense)
+                strSpeedCheck = "License Suspended";
+            
+            return strSpeedCheck;
         }
 
         // Part 2, Control Flow. Come back to this section after completing the For/Foreach/While loops.
@@ -58,14 +95,25 @@ namespace ControlFlow
         // output should be 2.
         public static int DivisibleByNumber(int minNumber, int maxNumber, int divider)
         {
-            return default;
+            int intDividerCount = 0;
+            for (int i = minNumber; i <= maxNumber; i++)
+            {
+                if (i % divider == 0)
+                    intDividerCount++;
+            }
+            return intDividerCount;
         }
 
         // 2.2 - Add to the method below that calculates the sum of all the integers and return it. For example if
         // the program enters (2, 3, 5, 1) then the return should be 11.
         public static int SumIntegers(params int[] numbers)
         {
-            return default;
+            int intTotal = 0;
+            foreach (int number in numbers)
+            {
+                intTotal += number;
+            }
+            return intTotal;
         }
 
         // 2.3 - Add to the method below that computes the factorial of an integer return it. For example, if the
@@ -73,14 +121,24 @@ namespace ControlFlow
         // that 0! = 1.
         public static int FindFactorial(int number)
         {
-            return default;
+            int intFactorial = 1;
+            while (number > 0)
+            {
+                intFactorial *= number;
+                number--;
+			}
+            return intFactorial;
         }
 
         // 2.4 - Add to the method below that takes an array of integers. Then find the maximum of the numbers
         // and return it. For example, if the numbers are {5, 3, 8, 1, 4}, the program should return 8.
         public static int MaximumNumber(params int[] numbers)
         {
-            return default;
+            int intLargestNumber = 0;
+            foreach (int number in numbers)
+                if (number > intLargestNumber)
+                    intLargestNumber = number;
+            return intLargestNumber;
         }
     }
 
